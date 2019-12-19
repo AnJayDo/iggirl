@@ -1,5 +1,53 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+    <title>Instagram Girls</title>
+    <link rel="stylesheet" href="styleNav.css">
+    <link rel="stylesheet" href="stylePostContainer.css">
+    <link rel="stylesheet" href="foundation.min.css">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./images/logo.png">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chela+One&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lemon' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="vendors/css/animate.css">
+</head>
+
+<body>
+    <div class="header">
+        <nav>
+            <div>
+                <img src="./images/logo.png" alt="Smart Washer logo" class="logo">
+            </div>
+            <div class="iggirl">Instagram Girls</div>
+            <ul class="main-nav">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about-page">ABOUT PAGE</a></li>
+                <li><a href="#about-us">ABOUT US</a></li>
+                <li><button type="submit" id="btn-contact">CONTACT</button></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </div>
+    <div class="content-box">
+        <div class="ads-left">a</div>
+        <div class="post-container" id="post-container">
+            <div class="post-column" id="post-column-1"></div>
+            <div class="post-column" id="post-column-2"></div>
+            <div class="post-column" id="post-column-3"></div>
+            <script src="loadImage.js"></script>
+        </div>
+        <div class="ads-right">a</div>
+    </div>
+    <footer></footer>
+</body>
 <script>
     window.fbAsyncInit = function () {
         FB.init({
@@ -18,5 +66,5 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
+<script src="navBar.js"></script>
 </html>
