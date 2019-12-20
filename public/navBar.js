@@ -33,9 +33,3 @@ try {
     });
   });
 } catch (e) { }
-
-document.getElementById("btn-contact").onclick = function () {
-  $('html, body').animate({ scrollTop: $('.contact').offset().top }, 1000);
-
-};
-

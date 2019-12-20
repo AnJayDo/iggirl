@@ -7,11 +7,9 @@
 /* NavBar */
 .header {
     background-color: white;
-    height: 9vh;
+    height: 73px;
 	width: 100%;
 	position: fixed;
-	border-top: 20px 20px;
-	box-shadow: 5px 5px 60px 5px #16787d;
 	z-index: 3;
 }
 
@@ -129,11 +127,11 @@ nav {
 @media screen and (max-width:1100px) {
 	.logo {
 		margin-left: 17vw;
-		height: 5vh;
+		height: 80px;
 		width: 5vh;
 	}
-	header {
-		height: 5.5vh;
+	.header {
+		height: 100px;
 	}
 	.iggirl {
 		float: left;
@@ -191,7 +189,7 @@ nav {
     }
     .main-nav li:last-child button:hover {
         height: 3vh;
-    }
+	}
 }
 
 .nav-active {

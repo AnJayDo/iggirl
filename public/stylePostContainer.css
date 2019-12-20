@@ -1,0 +1,57 @@
+.space-box {
+    width: 100%;
+    height: 10px;
+    background-color: transparent;
+}
+
+.content-box {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+}
+.ads-left {
+    width: 5vw;
+    height: 100%;
+    background-color: transparent;
+}
+
+.ads-right {
+    width: 5vw;
+    height: 100%;
+    background-color: transparent;
+}
+
+.post-container {
+    width: 90vw;
+    height: 100%;
+    display: flex;
+}
+
+.post-column {
+    width: 32%;
+    display: inline;
+    margin-left: 1.33%;
+}
+
+.post {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+    margin-top: 10px;
+    padding-bottom: 15px;
+    background-image: white;
+    box-shadow: 3px 3px 20px 3px rgb(224, 224, 224);
+}
+
+.post-owner {
+    display: flex; padding-top:5px;
+}
+
+.post-caption {
+    padding-top:10px;padding-left:10px;padding-right:10px;white-space: nowrap; 
+                    height: 28px; 
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+}
