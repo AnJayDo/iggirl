@@ -7,7 +7,6 @@
 .content-box {
     display: flex;
     width: 100%;
-    height: 100%;
     padding-top: 100px;
 }
 .ads-left {
@@ -24,7 +23,7 @@
 
 .post-container {
     width: 90vw;
-    height: 100%;
+    height: fit-content;
     display: flex;
 }
 
@@ -46,12 +45,23 @@
 }
 
 .post-owner {
-    display: flex; padding-top:5px;
+    display: flex; 
+    padding-top:5px;
 }
 
 .post-caption {
-    padding-top:10px;padding-left:10px;padding-right:10px;white-space: nowrap; 
-                    height: 28px; 
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+    padding-top:10px;
+    padding-left:10px;
+    padding-right:10px;
+    white-space: nowrap; 
+    height: 28px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.button-load-more {
+    display: inline;
+    margin-top: 20px;
+    width: 200px;
+    margin-left: 42%;
 }

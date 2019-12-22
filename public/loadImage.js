@@ -4,48 +4,74 @@ const loadJSON = (callback) => {
     xobj.open('GET', 'db.json', true);
     // Replace 'my_data' with the path to your file
     xobj.onreadystatechange = () => {
-        if (xobj.readyState === 4 && xobj.status === 200) {
-            // Required use of an anonymous callback 
-            // as .open() will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-        }
+        try {
+            if (xobj.readyState === 4 && xobj.status === 200) {
+                // Required use of an anonymous callback 
+                // as .open() will NOT return a value but simply returns undefined in asynchronous mode
+                callback(xobj.responseText);
+            }
+        } catch (e) { }
     };
     xobj.send(null);
 }
 
-function catchAndLoadImage() {
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+}
+
+window.onscroll = function(ev) {
+    
+    
+};
+
+var page = 0
+catchAndLoadImage(0);
+function loadMore() {
+    page++;
+    catchAndLoadImage(page)
+}
+
+
+function catchAndLoadImage(page) {
     try {
         loadJSON((res) => {
             var data = JSON.parse(res).links
-            while(data.length>0){
-                const data1 = [data[0], data[1], data[2], data[3]]
-                data = data.slice(4)
-                const data2 = [data[0], data[1], data[2], data[3]]
-                data = data.slice(4)
-                const data3 = [data[0], data[1], data[2], data[3]]
-                data = data.slice(4)
-                data1.forEach(e => {
-                    loadImage(e.link, 1)
-                })
-                data2.forEach(e => {
-                    loadImage(e.link, 2)
-                })
-                data3.forEach(e => {
-                    loadImage(e.link, 3)
-                })
-            }
+            data=data.slice(page*12)
+            data=[data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11]]
+            
+            console.log(data)
+            //console.log(shuffle(data))
+                loadImageAllColumns(data)
+            data=data.slice(12)
         })
-
-        // var data1 = ["B6QM7ucBtIf", "B0A-uuUH7YV", "B5sqAJrB0VX"]
-        // var data2 = ["B3osMrrhFje", "Bw3luZYg9eH", "B6NoDgsBf0_"]
-        // var data3 = ["B5ks73klOWn", "BulgMJ0giZJ", "B6AwYCuB4Kw"]
-
     } catch (error) { }
 }
-function loadImage(code, num) {
-    const xhr = new XMLHttpRequest()
-    xhr.open('GET', `https://www.instagram.com/p/${code}/`, true)
+
+function loadImageAllColumns(data) {
     try {
+        const data1 = [data[0], data[1], data[2], data[3]]
+    data = data.slice(4)
+    const data2 = [data[0], data[1], data[2], data[3]]
+    data = data.slice(4)
+    const data3 = [data[0], data[1], data[2], data[3]]
+    data = data.slice(4)
+    data1.forEach(e => {
+        loadImage(e.link, 1)
+    })
+    data2.forEach(e => {
+        loadImage(e.link, 2)
+    })
+    data3.forEach(e => {
+        loadImage(e.link, 3)
+    })
+} catch(e) {}
+}
+
+function loadImage(code, num) {
+    if(code.length>14) return
+    const xhr = new XMLHttpRequest()
+    try {
+        xhr.open('GET', `https://www.instagram.com/p/${code}/`, true)
         xhr.onload = function () {
             if (this.status == 200) {
                 let start = this.responseText.search('<script type="text/javascript">window._sharedData = ') + ('<script type="text/javascript">window._sharedData = ').length
@@ -61,7 +87,7 @@ function loadImage(code, num) {
                         <a href="https://instagram.com/${obj.owner.username}" style="padding-top:10px;padding-left:10px;">${obj.owner.username}</a>
                     </div>
                     <div class="space-box"></div>
-                    <img src="${obj.display_url}">
+                    <a href="https://instagram.com/p/${obj.shortcode}"><img style="border-radius: 8px;" src="${obj.display_url}"></a>
                     <div class="space-box"></div>
                     <div class="space-box"></div>
                     </div>
@@ -75,7 +101,7 @@ function loadImage(code, num) {
                         <a href="https://instagram.com/${obj.owner.username}" style="padding-top:10px;padding-left:10px;">${obj.owner.username}</a>
                     </div>
                     <div class="space-box"></div>
-                    <img style="width: 100%; padding-right:4px;padding-left:4px;" src="${obj.display_url}">
+                    <a href="https://instagram.com/p/${obj.shortcode}"><img style="width: 100%; padding-right:4px;padding-left:4px;border-radius: 8px;" src="${obj.display_url}"></a>
                     <div class="space-box"></div>
                     <div class="post-caption">${obj.edge_media_to_caption.edges[0].node.text}</div>
                     <div class="space-box"></div>
@@ -84,9 +110,10 @@ function loadImage(code, num) {
                     }
                     document.getElementById(`post-column-${num}`).innerHTML += addInnerHtml
                 }
+            } else {
+                
             }
         }
     } catch (e) { }
-    xhr.send();
+    xhr.send(null);
 }
-catchAndLoadImage();
