@@ -57,7 +57,7 @@
     <script>
         window.onscroll = function() {
             let end = document.getElementById('load-more').offsetTop; 
-            let viewEnd = $(window).scrollTop(); 
+            let viewEnd = window.scrollY; 
             var distance = end - viewEnd
             console.log(distance)
             if(outerHeight<window.outerWidth){
