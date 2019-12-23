@@ -11,6 +11,7 @@
 	width: 100%;
 	position: fixed;
 	z-index: 3;
+	box-shadow: 3px 3px 10px 3px rgb(155, 155, 155);
 }
 
 .logo {
@@ -23,11 +24,14 @@
 
 .iggirl {
 	float: left;
-	color: #16787d;
 	margin-top: 1.8vh;
-	margin-left: 15px;
+	margin-left: 39vw;
 	font-size: 4.8vh;
 	font-family: 'Lemon', cursive;
+}
+
+.iggirl a {
+	color: #9b0d7c;
 }
 
 
@@ -38,7 +42,7 @@ nav {
 
 .main-nav {
     display: flex;
-	margin-left: 20%;
+	margin-left: 24%;
     justify-content: space-around;
     width: 47%;
 }
@@ -137,7 +141,7 @@ nav {
 		float: left;
 		color: #16787d;
 		margin-top: 1vh;
-		margin-left: 1vh;
+		margin-left: 24vw;
 		font-size: 3vh;
 	}
     .main-nav {

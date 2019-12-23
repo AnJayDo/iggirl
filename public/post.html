@@ -24,11 +24,11 @@
 <body>
     <div class="header">
         <nav>
-            <!-- <div>
+            <div>
                 <img src="./images/logo.png" alt="Smart Washer logo" class="logo">
-            </div> -->
-            <div class="iggirl"><a href="/home" >Instagram Girls</a></div>
-            <!-- <ul class="main-nav">
+            </div>
+            <div class="iggirl">Instagram Girls</div>
+            <ul class="main-nav">
                 <li><a href="/home">HOME</a></li>
                 <li><a href="/aboutpage">ABOUT PAGE</a></li>
                 <li><a href="/aboutus">ABOUT US</a></li>
@@ -39,9 +39,9 @@
                 <div class="line2"></div>
                 <div class="line3"></div>
             </div>
-        </nav> -->
+        </nav>
     </div>
-    <div  style="background-color: rgb(247, 247, 247);" class="space-box"></div>
+    <div class="space-box"></div>
     <div class="content-box">
         <div class="ads-left"></div>
         <div class="post-container" id="post-container">
@@ -53,30 +53,49 @@
         </div>
         <div class="ads-right"></div>
     </div>
-    <div style="background-color: rgb(247, 247, 247);"><button class="button-load-more"  id="load-more" onclick="loadMore()">LOAD MORE</button></div>
+    <button class="button-load-more"  id="load-more" onclick="loadMore()">LOAD MORE</button>
     <script>
         window.onscroll = function() {
             let end = document.getElementById('load-more').offsetTop; 
             let viewEnd = $(window).scrollTop(); 
             var distance = end - viewEnd
-            console.log(distance)
             if(outerHeight<window.outerWidth){
-                if(distance<600) {
+                if(distance<700) {
                     document.getElementById('load-more').click()
                 }
             } else {
-                if(distance<1851) {
+                if(distance<1900) {
                     document.getElementById('load-more').click()
                 }
             }
         } 
     </script>
-    <div style="background-color: rgb(247, 247, 247); padding-left: auto;"><svg id="load-more-circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  style="margin: auto; background-color: rgb(247, 247, 247);display:block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+    <svg id="load-more-circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#fff;display:block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
         <circle cx="50" cy="50" fill="none" stroke="#31b3c0" stroke-width="10" r="17" stroke-dasharray="80.11061266653974 28.703537555513243" transform="rotate(49.3441 50 50)">
           <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
         </circle>
-    </svg></div>
+    </svg>
     <footer></footer>
 </body>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '425452751676150',
+            xfbml: true,
+            version: 'v5.0'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
+</script>
+<script src="navBar.js"></script>
+
 </html>

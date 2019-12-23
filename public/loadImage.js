@@ -24,8 +24,9 @@ window.onscroll = function(ev) {
     
 };
 
-var page = 0
+var page = 1
 catchAndLoadImage(0);
+catchAndLoadImage(1);
 function loadMore() {
     page++;
     catchAndLoadImage(page)
@@ -36,12 +37,11 @@ function catchAndLoadImage(page) {
     try {
         loadJSON((res) => {
             var data = JSON.parse(res).links
+            shuffle(data)
             data=data.slice(page*12)
             data=[data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11]]
-            
-            console.log(data)
             //console.log(shuffle(data))
-                loadImageAllColumns(data)
+            loadImageAllColumns(data)
             data=data.slice(12)
         })
     } catch (error) { }
@@ -50,25 +50,31 @@ function catchAndLoadImage(page) {
 function loadImageAllColumns(data) {
     try {
         const data1 = [data[0], data[1], data[2], data[3]]
-    data = data.slice(4)
-    const data2 = [data[0], data[1], data[2], data[3]]
-    data = data.slice(4)
-    const data3 = [data[0], data[1], data[2], data[3]]
-    data = data.slice(4)
-    data1.forEach(e => {
-        loadImage(e.link, 1)
-    })
-    data2.forEach(e => {
-        loadImage(e.link, 2)
-    })
-    data3.forEach(e => {
-        loadImage(e.link, 3)
+        data = data.slice(4)
+        const data2 = [data[0], data[1], data[2], data[3]]
+        data = data.slice(4)
+        const data3 = [data[0], data[1], data[2], data[3]]
+        data = data.slice(4)
+        data1.forEach(e => {
+            loadImage(e.link, 1)
+        })
+        data2.forEach(e => {
+            loadImage(e.link, 2)
+        })
+        data3.forEach(e => {
+            loadImage(e.link, 3)
     })
 } catch(e) {}
 }
 
 function loadImage(code, num) {
-    if(code.length>14) return
+    while(code.length>14) {
+        loadJSON((res) => {
+            var data = JSON.parse(res).links
+            shuffle(data)
+            code=data[Math.floor(random()*1000+1)]
+        })
+    }
     const xhr = new XMLHttpRequest()
     try {
         xhr.open('GET', `https://www.instagram.com/p/${code}/`, true)
@@ -110,10 +116,12 @@ function loadImage(code, num) {
                     }
                     document.getElementById(`post-column-${num}`).innerHTML += addInnerHtml
                 }
-            } else {
-                
             }
         }
-    } catch (e) { }
+    } catch (e) { 
+    }
     xhr.send(null);
+    if(xhr.status==404) {
+        loadImage(code,num)
+    }
 }

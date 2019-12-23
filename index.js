@@ -23,19 +23,15 @@ app.get('/home', function(req,res){
 })
 
 app.get('/aboutpage', function(req,res){
-    res.send('About Page')
+    res.redirect('https://github.com/JasonAnger/iggirl')
 })
 
 app.get('/aboutus', function(req,res){
-    res.send('About Us')
-})
-
-app.get('/contact', function(req,res){
-    res.send('Contact')
-})
-
-app.listen(process.env.PORT, function(){
-    console.log('Server listening on port '+process.env.PORT)
+    res.redirect('https://www.facebook.com/dovanminhan')
 })
 
 app.use('/admin', adminRouter)
+
+app.listen(process.env.PORT, function() {
+    console.log('Listening on port',process.env.PORT)
+})
