@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 
+const port = process.env.PORT || 3000
+
 const app = express()
 
 const adminRouter = require('./adminRouter')
@@ -32,6 +34,6 @@ app.get('/aboutus', function(req,res){
 
 app.use('/admin', adminRouter)
 
-app.listen(process.env.PORT, function() {
-    console.log('Listening on port',process.env.PORT)
+app.listen(port, function() {
+    console.log('Listening on port',port)
 })
