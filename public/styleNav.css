@@ -23,11 +23,10 @@
 }
 
 .iggirl {
-	float: left;
-	margin-top: 1.8vh;
-	margin-left: 39vw;
-	font-size: 4.8vh;
-	font-family: 'Lemon', cursive;
+    margin-top: 1vh;
+    text-align: center;
+    font-size: 47px;
+    font-family: 'Lemon', cursive;
 }
 
 .iggirl a {
@@ -36,8 +35,8 @@
 
 
 nav {
-    display: flex;
-    min-height: 8vh;
+	min-height: 8vh;
+	text-align: center;
 }
 
 .main-nav {
@@ -133,20 +132,13 @@ footer {
 }
 
 @media screen and (max-width:1100px) {
-	.logo {
-		margin-left: 17vw;
-		height: 80px;
-		width: 5vh;
-	}
 	.header {
 		height: 100px;
 	}
 	.iggirl {
-		float: left;
 		color: #16787d;
 		margin-top: 1vh;
-		margin-left: 24vw;
-		font-size: 3vh;
+		font-size: 65px;
 	}
     .main-nav {
         width: 30%;

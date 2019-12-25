@@ -45,11 +45,11 @@
             let viewEnd = window.scrollY; 
             var distance = end - viewEnd
             if(outerHeight<window.outerWidth){
-                if(distance<600) {
+                if(distance<innerHeight) {
                     document.getElementById('load-more').click()
                 }
             } else {
-                if(distance<1851) {
+                if(distance<innerHeight) {
                     document.getElementById('load-more').click()
                 }
             }
