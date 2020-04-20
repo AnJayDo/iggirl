@@ -40,4 +40,18 @@ router.post('/addJSON', async(req,res) => {
     }
 })
 
+router.get('/removeDouble', async(req,res) => {
+    try {
+        var data = [];
+        db.get('links').value().forEach(link => {
+            if(db.get('links').filter({ link : link.link}).value().length>1){
+                data.push(link.link)
+            }
+        })
+        res.status(200).send(data)
+    } catch(e) { 
+        res.status(400).send(e) 
+    }
+})
+
 module.exports = router

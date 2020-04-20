@@ -10,6 +10,7 @@
     padding-top: 70px;
     font-family: 'Roboto Slab', serif;
     background-color: rgb(247, 247, 247);
+    justify-content: center;
 }
 .ads-left {
     width: 5vw;
