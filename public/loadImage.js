@@ -6,25 +6,20 @@ const loadJSON = (callback) => {
     xobj.onreadystatechange = () => {
         try {
             if (xobj.readyState === 4 && xobj.status === 200) {
-                // Required use of an anonymous callback 
-                // as .open() will NOT return a value but simply returns undefined in asynchronous mode
                 callback(xobj.responseText);
             }
-        } catch (e) { }
+        } catch (e) {}
     };
     xobj.send(null);
 }
+
+let loadedData = [];
 
 function shuffle(array) {
     array.sort(() => Math.random() - 0.5);
 }
 
-window.onscroll = function(ev) {
-    
-    
-};
-
-var page = 1
+let page = 1
 catchAndLoadImage(0);
 catchAndLoadImage(1);
 if(window.outerHeight>window.outerWidth) {
@@ -44,6 +39,9 @@ function catchAndLoadImage(page) {
         loadJSON((res) => {
             var data = JSON.parse(res).links
             shuffle(data)
+            loadedData.forEach(e => {
+                data.filter(element => e.link==element.link)
+            })
             data=data.slice(page*12)
             data=[data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11]]
             //console.log(shuffle(data))
@@ -66,12 +64,15 @@ function loadImageAllColumns(data) {
         const data3 = [data[0], data[1], data[2], data[3]]
         data = data.slice(4)
         data1.forEach(e => {
+            loadedData.push(e)
             loadImage(e.link, 1)
         })
         data2.forEach(e => {
+            loadedData.push(e)
             loadImage(e.link, 2)
         })
         data3.forEach(e => {
+            loadedData.push(e)
             loadImage(e.link, 3)
         })
     } catch(e) {}
@@ -86,12 +87,15 @@ function loadImageOneColumns(data) {
         const data3 = [data[0], data[1], data[2], data[3]]
         data = data.slice(4)
         data1.forEach(e => {
+            loadedData.push(e)
             loadImage(e.link, 1)
         })
         data2.forEach(e => {
+            loadedData.push(e)
             loadImage(e.link, 1)
         })
         data3.forEach(e => {
+            loadedData.push(e)
             loadImage(e.link, 1)
         })
     } catch(e) {}
@@ -129,7 +133,7 @@ function loadImage(code, num) {
                             `
                         var z=200;
                         obj.edge_sidecar_to_children.edges.forEach(e => {
-                            if(z==200) addInnerHtml += `<img style="max-width:200%; width: 100%; position: relative; display: absolute;transition: transform 0.5s ease-in; z-index=${z};border-radius: 8px;" src="${e.node.display_resources[0].src}">`
+                            if(z==200) addInnerHtml += `<img style="max-width:200%; width: 100%; position: relative; display: absolute;transition: transform 0.5s ease-in; z-index=${z};border-radius: 8px;" src="${e.node.display_resources[1].src}">`
                             //else addInnerHtml += `<img style="position: relative; display: none;transition: transform 0.5s ease-in; z-index=${z}" src="${e.node.display_url}">`
                             z--;
                         })
@@ -137,7 +141,7 @@ function loadImage(code, num) {
                             </a></div>
                             <div style="display: flex;"><button style="display: none;" onclick="back()">Back</button><button style="display: none;" onclick="next()">Next</button></div>
                         </div></div>`
-                    } else addInnerHtml += `<div style="text-align:center; width: 100%; padding-right:4px;padding-left:4px;"><a href="https://instagram.com/p/${obj.shortcode}"><img style="border-radius: 8px; width: 100%; " src="${obj.display_resources[0].src}"></a></div>`
+                    } else addInnerHtml += `<div style="text-align:center; width: 100%; padding-right:4px;padding-left:4px;"><a href="https://instagram.com/p/${obj.shortcode}"><img style="border-radius: 8px; width: 100%; " src="${obj.display_resources[1].src}"></a></div>`
                     addInnerHtml+=`<div style="display: flex;"><img class="like" src="./images/love.png"><div class="like-number">${obj.edge_media_preview_like.count}</div></div>`
                     if (obj.edge_media_to_caption.edges.length == 0) {
                         addInnerHtml+=`
