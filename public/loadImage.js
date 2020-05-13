@@ -173,3 +173,4 @@ function loadImage(code, num) {
 function next() {
     console.log(document.getElementsByTagName('img').length)
 }
+
