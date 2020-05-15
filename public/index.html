@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <div class="header">
+    <div class="header" id='header-hidden'>
         <nav>
             <div class="iggirl"><a href="/home" >Instagram Girls</a></div>
         </nav>
@@ -43,6 +43,10 @@
             let end = document.getElementById('load-more').offsetTop; 
             let viewEnd = window.scrollY; 
             var distance = end - viewEnd
+            if(document.getElementById("header-hidden").style.display=="" && viewEnd>73) {
+                document.getElementById('header-hidden').style.display='none'
+            }
+            else if(viewEnd<73) document.getElementById('header-hidden').style.display=''
             if(outerHeight<window.outerWidth){
                 if(distance<innerHeight) {
                     document.getElementById('load-more').click()
