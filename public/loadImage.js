@@ -113,23 +113,23 @@ var loadImage = async (code, num) => {
     try {
         var data = await fetch(`https://api.instagram.com/oembed/?url=https://instagram.com/p/${code}/`, { method: 'GET' }).then(res => res.text())
         data = JSON.parse(data)
-        const user = JSON.parse(await fetch(`https://www.instagram.com/${data.author_name}/`, { method: 'GET', redirect: 'manual' })
-            .then(response => response.text())
-            .then(res => {
-                let start = res.search('<script type="text/javascript">window._sharedData = ') + ('<script type="text/javascript">window._sharedData = ').length;
-                let end = res.search('false};') + 6;
-                var sharedData = res.slice(start, end);
-                return sharedData;
-            }))
+        // const user = JSON.parse(await fetch(`https://www.instagram.com/${data.author_name}/`, { method: 'GET', redirect: 'manual' })
+        //     .then(response => response.text())
+        //     .then(res => {
+        //         let start = res.search('<script type="text/javascript">window._sharedData = ') + ('<script type="text/javascript">window._sharedData = ').length;
+        //         let end = res.search('false};') + 6;
+        //         var sharedData = res.slice(start, end);
+        //         return sharedData;
+        //     }))
         if (data) {
             var addInnerHtml = `
                                 <div class="post">
                                 <div class="post-owner"> 
-                                    <img class="avatar" src="${user.entry_data.ProfilePage[0].graphql.user.profile_pic_url}">  
+                                    <img class="avatar" src="${(await fetch(`https://www.instagram.com/p/${code}/media/?size=t`)).url}">  
                                     <a href="https://instagram.com/${data.author_name}" style="padding-top:10px;padding-left:10px;">${data.author_name}</a>
                                 </div>
                                 <div class="space-box"></div>`
-            const image = (await fetch(`https://www.instagram.com/p/${code}/media/?size=l`)).url
+            const image = (await fetch(`https://www.instagram.com/p/${code}/media/?size=l`)).url //data.thumbnail_url //
             addInnerHtml += `<div style="text-align:center; width: 100%; padding-right:4px;padding-left:4px;"><a href="https://instagram.com/p/${code}"><img style="border-radius: 8px; width: 100%; " src="${image}"></a></div>`
             //addInnerHtml += `<div style="display: flex;"><img class="like" src="./images/love.png"><div class="like-number">${obj.edge_media_preview_like.count}</div></div>`
             if (data.title == 0) {
