@@ -1,7 +1,11 @@
 *{
     margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#body {
+	background: rgb(247, 247, 247);
 }
 
 /* NavBar */
