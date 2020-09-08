@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,400,500,600,700,800,900&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="vendors/css/animate.css">
     <script data-ad-client="ca-pub-6627570742178692" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>let clickSwitch=false;</script>
 </head>
 
 <body id="body">
@@ -41,19 +42,15 @@
     <div style="background-color: rgb(247, 247, 247);"><button class="button-load-more"  id="load-more" onclick="loadMore()">LOAD MORE</button></div>
     <script>
         window.onscroll = function() {
-            let end = document.getElementById('load-more').offsetTop; 
-            let viewEnd = window.scrollY; 
-            var distance = end - viewEnd
-            if(document.getElementById("header-hidden").style.display=="" && viewEnd>73) {
-                document.getElementById('header-hidden').style.display='none'
-            }
-            else if(viewEnd<73) document.getElementById('header-hidden').style.display=''
-            if(outerHeight<window.outerWidth){
-                if(distance<innerHeight) {
-                    document.getElementById('load-more').click()
+            if(clickSwitch==false){
+                let end = document.getElementById('load-more').offsetTop; 
+                let viewEnd = window.scrollY; 
+                var distance = end - viewEnd
+                if((document.getElementById("header-hidden").style.display=="block"||document.getElementById("header-hidden").style.display=="") && viewEnd>73) {
+                    document.getElementById('header-hidden').style.display='none'
                 }
-            } else {
-                if(distance<innerHeight) {
+                else if(viewEnd<73 && document.getElementById("header-hidden").style.display=="none") document.getElementById('header-hidden').style.display='block'
+                if(distance<=innerHeight) {
                     document.getElementById('load-more').click()
                 }
             }
